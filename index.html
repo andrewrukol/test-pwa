@@ -1,7 +1,23 @@
 <!doctype html>
 <html>
-    <head></head>
+    <head>
+        <title>Test pwa</title>
+    </head>
     <body>
-        <h1>Hello world</h1>
+        <h1>Tesst 2</h1>
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('service-worker.js')
+                .then(function(registration) {
+                    alert("registered");
+                    console.log('Registered:', registration);
+                })
+                .catch(function(error) {
+                    alert("registration failed");
+                    alert(JSON.stringify(error));
+                    console.log('Registration failed: ', error);
+                });
+            }    
+        </script>
     </body>
 </html>
