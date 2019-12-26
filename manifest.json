@@ -16,5 +16,6 @@
     ],
     "theme_color": "#ffee00",
     "background_color": "#ffee00",
-    "display": "standalone"
+    "display": "standalone",
+    "prefer_related_applications": false
 }
