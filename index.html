@@ -14,20 +14,7 @@
             let deferredPrompt; // Allows to show the install prompt
 let setupButton;
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    alert("beforeinstallprompt");
-    // Prevent Chrome 67 and earlier from automatically showing the prompt
-    e.preventDefault();
-    // Stash the event so it can be triggered later.
-    deferredPrompt = e;
-    console.log("beforeinstallprompt fired");
-    if (setupButton == undefined) {
-        setupButton = document.getElementById("setup_button");
-    }
-    // Show the setup button
-    setupButton.style.display = "inline";
-    setupButton.disabled = false;
-});
+
 
 function installApp() {
     // Show the prompt
@@ -49,7 +36,7 @@ function installApp() {
         </script>
     </head>
     <body>
-        <h1>Tesst 4</h1>
+        <h1>Tesst 5</h1>
         <button id="setup_button" onclick="installApp()">Installer</button>
         <script>
             if ('serviceWorker' in navigator) {
@@ -64,6 +51,21 @@ function installApp() {
                     console.log('Registration failed: ', error);
                 });
             }    
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+    alert("beforeinstallprompt");
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    deferredPrompt = e;
+    console.log("beforeinstallprompt fired");
+    if (setupButton == undefined) {
+        setupButton = document.getElementById("setup_button");
+    }
+    // Show the setup button
+    setupButton.style.display = "inline";
+    setupButton.disabled = false;
+});
 
         </script>
     </body>
