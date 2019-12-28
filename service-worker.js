@@ -2,6 +2,8 @@ var CACHE_NAME = 'static-cache';
 var urlsToCache = [
   '.',
   'index.html',
+  'calculator.js',
+  'index.js',
 ];
 self.addEventListener('install', function(event) {
   event.waitUntil(

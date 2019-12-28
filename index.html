@@ -1,11 +1,24 @@
 <!doctype html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="manifest" href="/test-pwa/manifest.json">
         <title>The App</title>
         <style>
+            body, .button {
+                font-size: 22px;
+            }
             #setup_button {
                 display: none;
+            }
+            .form-group {
+                margin-bottom: 22px;
+            }
+            input {
+                border: 1px solid blue;
+                padding: 5px;
+                width: 100%;
+                box-sizing: border-box;
             }
         </style>
         <script>
@@ -34,45 +47,19 @@ function installApp() {
         </script>
     </head>
     <body>
-        <h1>Калькулятор углеводов</h1>
-        <div>
-            Вес продукта: <input id="" type="number" value=""/> грамм
+        <h2>Калькулятор углеводов</h2>
+        <div class="form-group">
+            Вес продукта: <input class="calculator-input" id="input-ves" type="number" value=""/> грамм
         </div>
-        <button id="setup_button" onclick="installApp()">Installer</button>
-        <script>
-            const debug = false;
-            function log(message) {
-                if (!debug) {
-                    return;
-                }
-                alert(message);
-            }
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('./service-worker.js')
-                .then(function(registration) {
-                    log("registered");
-                })
-                .catch(function(error) {
-                    log("registration failed");
-                    log(JSON.stringify(error));
-                });
-            }    
-
-            window.addEventListener('beforeinstallprompt', (e) => {
-    alert("beforeinstallprompt");
-    // Prevent Chrome 67 and earlier from automatically showing the prompt
-    e.preventDefault();
-    // Stash the event so it can be triggered later.
-    deferredPrompt = e;
-    console.log("beforeinstallprompt fired");
-    if (setupButton == undefined) {
-        setupButton = document.getElementById("setup_button");
-    }
-    // Show the setup button
-    setupButton.style.display = "inline";
-    setupButton.disabled = false;
-});
-
-        </script>
+        <div class="form-group">
+            Углеводов в 100 граммах: <input class="calculator-input" id="input-uglevodoNaSto" type="number" value=""/>
+        </div>
+        <div class="form-group">
+            Желаемые единицы: <input class="calculator-input" id="input-zhelaemihEdinic" type="number" value=""/>
+        </div>
+        <button class="button" id="calculator-submit">Посчитать</button>
+        <button class="button" id="setup_button" onclick="installApp()">Installer</button>
+        <script src="/index.js"></script>
+        <script src="/calculator.js"></script>
     </body>
 </html>
