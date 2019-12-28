@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="manifest" href="/test-pwa/manifest.json">
-        <title>Test pwa</title>
+        <title>The App</title>
         <style>
             #setup_button {
                 display: none;
@@ -13,8 +13,6 @@
 
             let deferredPrompt; // Allows to show the install prompt
 let setupButton;
-
-
 
 function installApp() {
     // Show the prompt
@@ -36,19 +34,27 @@ function installApp() {
         </script>
     </head>
     <body>
-        <h1>Tesst 5</h1>
+        <h1>Калькулятор углеводов</h1>
+        <div>
+            Вес продукта: <input id="" type="number" value=""/> грамм
+        </div>
         <button id="setup_button" onclick="installApp()">Installer</button>
         <script>
+            const debug = false;
+            function log(message) {
+                if (!debug) {
+                    return;
+                }
+                alert(message);
+            }
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('./service-worker.js')
                 .then(function(registration) {
-                    alert("registered");
-                    console.log('Registered:', registration);
+                    log("registered");
                 })
                 .catch(function(error) {
-                    alert("registration failed");
-                    alert(JSON.stringify(error));
-                    console.log('Registration failed: ', error);
+                    log("registration failed");
+                    log(JSON.stringify(error));
                 });
             }    
 
