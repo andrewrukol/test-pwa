@@ -50,15 +50,20 @@ function roundResult(value) {
 }
 
 function calculateValues() {
+    let output = "";
     if (calculatorData.ves && calculatorData.uglevodoNaSto) {
         const uglevodov = (calculatorData.ves / 100) * calculatorData.uglevodoNaSto;
         const edinic = uglevodov / calculatorData.uglevodovNaEdinicu;
-        document.getElementById(calculatorInputs.zhelaemihEdinic).value = roundResult(edinic);
-    } else if (calculatorData.uglevodoNaSto && calculatorData.zhelaemihEdinic) {
+        // document.getElementById(calculatorInputs.zhelaemihEdinic).value = roundResult(edinic);
+        output += "Кол-во желаемых единиц: " + roundResult(edinic) + "<br/>";
+    }
+    if (calculatorData.uglevodoNaSto && calculatorData.zhelaemihEdinic) {
         const uglevodov = calculatorData.zhelaemihEdinic * calculatorData.uglevodovNaEdinicu;
         const ves = (uglevodov / calculatorData.uglevodoNaSto) * 100;
-        document.getElementById(calculatorInputs.ves).value = roundResult(ves);
+        // document.getElementById(calculatorInputs.ves).value = roundResult(ves);
+        output += "Вес: " + roundResult(ves) + "<br/>";
     }
+    document.getElementById("output").innerHTML = output;
 }
 
 document.getElementById("calculator-submit").addEventListener("click", () => {
